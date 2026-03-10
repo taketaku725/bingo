@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -7,44 +7,41 @@
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
+
   <div class="container">
-    
+
     <!-- トップ -->
     <div id="topScreen">
-      
       <h1>BINGO</h1>
+
       <button onclick="showHost()">ホスト</button>
       <button onclick="showPlayer()">プレイヤー</button>
-      
+
       <div class="probabilityBox">
         <h3>このビンゴは少し変わっています</h3>
+
         <p>
           数字はランダムですが、<br>
           <b>大きい数字ほど出やすくなる仕組み</b>です。
         </p>
-        
+
         <ul>
           <li>20 は 1 の <b>約20倍出やすい</b></li>
           <li>10 は 2 の <b>約5倍出やすい</b></li>
         </ul>
-        
-        <p>
-          つまり
-        </p>
-        
+
+        <p>つまり</p>
+
         <p class="strategy">
           <b>
             大きい数字で攻めるか、<br>
             小さい数字で粘るか。
           </b>
         </p>
-        
-        <p>
-          カード作りにも戦略があります。
-        </p>
-        
+
+        <p>カード作りにも戦略があります。</p>
+
         <div class="probabilityGraph">
           <div class="bar" style="--v:1">1</div>
           <div class="bar" style="--v:5">5</div>
@@ -52,38 +49,37 @@
           <div class="bar" style="--v:15">15</div>
           <div class="bar" style="--v:20">20</div>
         </div>
-        
+
         <p class="graphLabel">
           数字が大きいほど出やすい
         </p>
       </div>
-      
+
       <div class="scoreBox">
         <h3>スコアの計算</h3>
+
         <p>
           ビンゴすると、<br>
           <b>ビンゴした列の数字を全部足した合計</b>を使って得点を計算します。
         </p>
-        
+
         <p>
           その合計の<br>
           <b>10分の1（切り上げ）</b>が基本点になります。
         </p>
-        
+
         <p>
           さらに、後からビンゴした人は<br>
-          <b>それまでにビンゴした人の得点分</b>がボーナスとして加算されます。
+          <b>それまでにビンゴした人の分</b>がボーナスとして加算されます。
         </p>
-        
+
         <p class="scoreExample">
           例：ビンゴの合計が 37 の場合<br>
           → 37 ÷ 10 = 3.7 → <b>4点</b>
         </p>
-        
-        <p>
-          つまり
-        </p>
-        
+
+        <p>つまり</p>
+
         <p class="strategy">
           <b>
             早くビンゴすると安全。<br>
@@ -92,46 +88,51 @@
         </p>
       </div>
     </div>
-    
+
     <!-- ホスト -->
-    
     <div id="hostScreen" class="hidden">
       <h2>ホスト</h2>
-      
+
       <button onclick="draw()">回す</button>
       <div id="result" class="result">-</div>
-      
+
       <h3>ログ</h3>
       <div id="log" class="log"></div>
-      
+
       <h3>BINGO入力</h3>
       <input id="bingoInput" type="number">
       <button onclick="addScore()">追加</button>
+
       <div id="scoreList"></div>
+
       <button onclick="backTop()">戻る</button>
     </div>
-    
+
     <!-- プレイヤー -->
-    
     <div id="playerScreen" class="hidden">
+
       <div id="createScreen">
         <h3>カード作成</h3>
+
         <div id="inputGrid" class="grid"></div>
+
         <button onclick="generateCard()">ランダム</button>
         <button onclick="startPlay()">このカードで開始</button>
         <button onclick="backTop()">戻る</button>
       </div>
-      
+
       <div id="playScreen" class="hidden">
         <div id="playCard" class="grid"></div>
         <div id="reachCount"></div>
         <div id="bingoResult"></div>
+
         <button onclick="backTop()">戻る</button>
       </div>
-    </div>
-  </div>
-  
-  <script src="script.js"></script>
 
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
