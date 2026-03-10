@@ -1,30 +1,43 @@
-const CACHE = "bingo-v1"
+const CACHE_NAME = "bingo-v1";
 
 const ASSETS = [
   "./",
   "./index.html",
   "./style.css",
-  "./script.js"
-]
+  "./script.js",
+  "./icon.png",
+  "./manifest.json"
+];
 
-self.addEventListener("install", e => {
-  e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(ASSETS))
-  )
-})
+self.addEventListener("install", event => {
+  self.skipWaiting();
 
-self.addEventListener("fetch", e => {
-  e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request))
-  )
-})
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS))
+  );
+});
 
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys.filter(k => k !== CACHE).map(k => caches.delete(k))
-      )
-    )
-  )
-})
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      );
+    }).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      })
+  );
+});
