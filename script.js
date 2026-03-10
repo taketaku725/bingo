@@ -244,7 +244,20 @@ function checkBingo(){
 
   }
 
-  bingoResult.textContent="BINGO : "+score
+  bingoResult.innerHTML = `
+    <div class="bingoText">
+      ✨ BINGO ✨
+    </div>
+    <div>
+      ${score}
+    </div>
+  `
+
+  document.body.classList.add("bingoFlash")
+
+  setTimeout(()=>{
+    document.body.classList.remove("bingoFlash")
+  },800)
 
 }
 
