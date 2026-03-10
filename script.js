@@ -85,6 +85,7 @@ function placeNumber(num){
   selectedCell.dataset.num=num
 
   updatePad()
+  checkCardComplete()
 
 }
 
@@ -120,6 +121,17 @@ function generateCard(){
   })
 
   updatePad()
+  checkCardComplete()
+
+}
+
+function checkCardComplete(){
+
+  const cells=[...document.querySelectorAll("#cardGrid .cell")]
+
+  const filled=cells.every(c=>c.dataset.num)
+
+  document.getElementById("startButton").disabled=!filled
 
 }
 
@@ -287,8 +299,11 @@ function addScore(){
 
   bingoScores.push(n)
 
+  const rank=bingoScores.length
+
   const div=document.createElement("div")
-  div.textContent="入力:"+n+" → "+score
+
+  div.textContent=rank+"着 : "+n+" → "+score
 
   scoreList.appendChild(div)
 
