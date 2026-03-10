@@ -15,7 +15,6 @@
 
 </head>
 
-
 <body>
 
 <div class="container">
@@ -35,7 +34,7 @@
 
 
 
-<!-- ホスト画面 -->
+<!-- ホスト -->
 
 <div id="hostScreen" class="hidden">
 
@@ -48,7 +47,6 @@
 <h3>ログ</h3>
 
 <div id="log" class="log"></div>
-
 
 <h3>BINGO入力</h3>
 
@@ -71,9 +69,11 @@
 
 <div id="createScreen">
 
-<button onclick="generateCard()">ランダムカード作成</button>
+<h3>カード作成</h3>
 
-<div id="card" class="grid"></div>
+<div id="inputGrid" class="grid"></div>
+
+<button onclick="generateCard()">ランダム</button>
 
 <button onclick="startPlay()">このカードで開始</button>
 
@@ -85,9 +85,9 @@
 
 <div id="playScreen" class="hidden">
 
-<div id="reachCount"></div>
-
 <div id="playCard" class="grid"></div>
+
+<div id="reachCount"></div>
 
 <div id="bingoResult"></div>
 
@@ -97,7 +97,6 @@
 
 
 </div>
-
 
 </div>
 
