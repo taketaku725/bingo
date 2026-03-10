@@ -1,150 +1,137 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html, body {
-  touch-action: manipulation;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f5f5f5;
+html,body{
+  touch-action:manipulation;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#f5f5f5;
 }
 
-.hidden {
-  display: none;
+.container{
+  max-width:600px;
+  margin:auto;
+  padding:20px;
 }
 
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
+.hidden{
+  display:none;
 }
 
-button {
-  padding: 12px 16px;
-  margin-top: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background: #333;
-  color: white;
+button{
+  padding:12px 16px;
+  margin-top:10px;
+  font-size:16px;
+  border:none;
+  border-radius:8px;
+  background:#333;
+  color:white;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 20px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:20px;
 }
 
-.cell, input {
-  aspect-ratio: 1;
-  border-radius: 10px;
-  font-size: 24px;
-  text-align: center;
-  border: 2px solid #ccc;
+.pad{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  margin-top:10px;
 }
 
-.cell {
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.pad button{
+  padding:14px;
+  font-size:16px;
 }
 
-.cell.hit {
-  background: #333;
-  color: white;
+.pad button.used{
+  background:#aaa;
 }
 
-.reachNumber {
-  border: 4px solid red;
-  animation: flash 1s infinite;
+.cell{
+  aspect-ratio:1;
+  border:2px solid #ccc;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  background:white;
 }
 
-.reachLine {
-  background: #fff3cd;
+.cell.selected{
+  border:4px solid blue;
 }
 
-@keyframes flash {
-  0% { background: #fff; }
-  50% { background: #ffe6e6; }
-  100% { background: #fff; }
+.cell.hit{
+  background:#333;
+  color:white;
 }
 
-.result {
-  font-size: 80px;
-  text-align: center;
-  margin: 20px 0;
+.reachNumber{
+  border:4px solid red;
+  animation:flash 1s infinite;
 }
 
-.log {
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  max-height: 200px;
-  overflow: auto;
+.reachLine{
+  background:#fff3cd;
 }
 
-#reachCount {
-  margin-top: 20px;
-  font-size: 22px;
-  font-weight: bold;
+@keyframes flash{
+  0%{background:#fff}
+  50%{background:#ffe6e6}
+  100%{background:#fff}
 }
 
-#bingoResult {
-  margin-top: 20px;
-  font-size: 28px;
-  font-weight: bold;
+.result{
+  font-size:80px;
+  text-align:center;
+  margin:20px 0;
 }
 
-.probabilityBox,
-.scoreBox {
-  background: white;
-  padding: 16px;
-  border-radius: 10px;
-  margin-top: 20px;
-  font-size: 14px;
-  line-height: 1.6;
+.log{
+  background:white;
+  padding:10px;
+  border-radius:8px;
+  max-height:200px;
+  overflow:auto;
 }
 
-.strategy {
-  text-align: center;
-  font-size: 16px;
-  margin: 10px 0;
+#reachCount{
+  margin-top:20px;
+  font-size:22px;
+  font-weight:bold;
 }
 
-.probabilityGraph {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  height: 80px;
-  margin-top: 10px;
+#bingoResult{
+  margin-top:20px;
+  font-size:28px;
+  font-weight:bold;
 }
 
-.bar {
-  flex: 1;
-  background: #333;
-  color: white;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  font-size: 12px;
-  padding-bottom: 4px;
-  height: calc(var(--v) * 3px);
-  border-radius: 4px;
+.probabilityBox,.scoreBox{
+  background:white;
+  padding:16px;
+  border-radius:10px;
+  margin-top:20px;
+  font-size:14px;
+  line-height:1.6;
 }
 
-.graphLabel {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 6px;
-  color: #666;
+.strategy{
+  text-align:center;
+  font-size:16px;
+  margin:10px 0;
 }
 
-.scoreExample {
-  background: #f8f8f8;
-  padding: 8px;
-  border-radius: 6px;
-  margin-top: 10px;
+.scoreExample{
+  background:#f8f8f8;
+  padding:8px;
+  border-radius:6px;
+  margin-top:10px;
 }
