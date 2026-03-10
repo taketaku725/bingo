@@ -2,7 +2,6 @@ let numbers=[]
 let drawn=[]
 let bingoScores=[]
 
-
 const lines=[
 [0,1,2],
 [3,4,5],
@@ -14,9 +13,8 @@ const lines=[
 [2,4,6]
 ]
 
-
 initNumbers()
-
+createInputs()
 
 
 function initNumbers(){
@@ -24,55 +22,60 @@ function initNumbers(){
 numbers=[]
 
 for(let i=1;i<=20;i++){
-
 numbers.push(i)
-
 }
 
 }
 
+
+function createInputs(){
+
+let grid=document.getElementById("inputGrid")
+
+for(let i=0;i<9;i++){
+
+let input=document.createElement("input")
+
+input.type="number"
+
+input.min=1
+input.max=20
+
+grid.appendChild(input)
+
+}
+
+}
 
 
 function showHost(){
 
 hideAll()
-
 document.getElementById("hostScreen").classList.remove("hidden")
 
 }
 
-
-
 function showPlayer(){
 
 hideAll()
-
 document.getElementById("playerScreen").classList.remove("hidden")
 
 }
 
-
-
 function backTop(){
 
 hideAll()
-
 document.getElementById("topScreen").classList.remove("hidden")
 
 }
 
-
-
 function hideAll(){
 
 document.getElementById("topScreen").classList.add("hidden")
-
 document.getElementById("hostScreen").classList.add("hidden")
-
 document.getElementById("playerScreen").classList.add("hidden")
 
 }
-
 
 
 function weightedRandom(){
@@ -96,7 +99,6 @@ if(r<=sum)return n
 }
 
 
-
 function draw(){
 
 if(drawn.length===20)return
@@ -107,19 +109,18 @@ drawn.push(n)
 
 document.getElementById("result").textContent=n
 
-let log=document.getElementById("log")
-
 let div=document.createElement("div")
 
 div.textContent=n
 
-log.prepend(div)
+document.getElementById("log").prepend(div)
 
 }
 
 
-
 function generateCard(){
+
+let inputs=document.querySelectorAll("#inputGrid input")
 
 let nums=[]
 
@@ -131,48 +132,61 @@ if(!nums.includes(n))nums.push(n)
 
 }
 
-let card=document.getElementById("card")
+inputs.forEach((i,idx)=>{
 
-card.innerHTML=""
+i.value=nums[idx]
+
+})
+
+}
+
+
+function startPlay(){
+
+let inputs=document.querySelectorAll("#inputGrid input")
+
+let nums=[]
+
+for(let i of inputs){
+
+let v=parseInt(i.value)
+
+if(!v || v<1 || v>20){
+alert("1〜20で入力")
+return
+}
+
+if(nums.includes(v)){
+alert("数字が重複")
+return
+}
+
+nums.push(v)
+
+}
+
+let play=document.getElementById("playCard")
+
+play.innerHTML=""
 
 nums.forEach(n=>{
 
 let cell=document.createElement("div")
 
 cell.className="cell"
-
 cell.textContent=n
-
 cell.dataset.num=n
 
-card.appendChild(cell)
+cell.onclick=()=>toggleCell(cell)
+
+play.appendChild(cell)
 
 })
-
-}
-
-
-
-function startPlay(){
-
-let card=document.getElementById("card")
-
-let playCard=document.getElementById("playCard")
-
-playCard.innerHTML=card.innerHTML
 
 document.getElementById("createScreen").classList.add("hidden")
-
 document.getElementById("playScreen").classList.remove("hidden")
 
-document.querySelectorAll("#playCard .cell").forEach(c=>{
-
-c.onclick=()=>toggleCell(c)
-
-})
-
 }
-
 
 
 function toggleCell(el){
@@ -180,11 +194,9 @@ function toggleCell(el){
 el.classList.toggle("hit")
 
 updateReach()
-
 checkBingo()
 
 }
-
 
 
 function updateReach(){
@@ -194,12 +206,11 @@ let cells=document.querySelectorAll("#playCard .cell")
 cells.forEach(c=>{
 
 c.classList.remove("reachNumber")
-
 c.classList.remove("reachLine")
 
 })
 
-let reachCount=0
+let reach=0
 
 lines.forEach(line=>{
 
@@ -207,20 +218,15 @@ let hits=line.filter(i=>cells[i].classList.contains("hit"))
 
 if(hits.length===2){
 
-reachCount++
+reach++
 
 line.forEach(i=>{
 
 if(!cells[i].classList.contains("hit")){
-
 cells[i].classList.add("reachNumber")
-
 }
-
 else{
-
 cells[i].classList.add("reachLine")
-
 }
 
 })
@@ -229,18 +235,14 @@ cells[i].classList.add("reachLine")
 
 })
 
-let text=""
-
-if(reachCount>0){
-
-text=reachCount+" リーチ"
-
+if(reach>0){
+document.getElementById("reachCount").textContent=reach+" リーチ"
+}
+else{
+document.getElementById("reachCount").textContent=""
 }
 
-document.getElementById("reachCount").textContent=text
-
 }
-
 
 
 function checkBingo(){
@@ -254,12 +256,13 @@ let bingoLines=[]
 lines.forEach(line=>{
 
 if(line.every(i=>cells[i].classList.contains("hit")))
-
 bingoLines.push(line)
 
 })
 
 if(bingoLines.length===0)return
+
+document.getElementById("reachCount").textContent=""
 
 let score
 
@@ -267,9 +270,7 @@ if(bingoLines.length===1){
 
 score=bingoLines[0].reduce((a,i)=>a+nums[i],0)
 
-}
-
-else{
+}else{
 
 let set=new Set()
 
@@ -288,7 +289,6 @@ document.getElementById("bingoResult").textContent="BINGO : "+score
 }
 
 
-
 function addScore(){
 
 let input=document.getElementById("bingoInput")
@@ -300,9 +300,7 @@ if(!n)return
 let base=Math.ceil(n/10)
 
 let bonus=bingoScores
-
 .map(v=>Math.ceil(v/10))
-
 .reduce((a,b)=>a+b,0)
 
 let score=base+bonus
@@ -320,9 +318,6 @@ input.value=""
 }
 
 
-
 if("serviceWorker" in navigator){
-
 navigator.serviceWorker.register("sw.js")
-
 }
