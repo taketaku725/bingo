@@ -1,7 +1,7 @@
 const CACHE = "bingo-v1"
 
 const ASSETS = [
-  "./"
+  "./",
   "./index.html",
   "./style.css",
   "./script.js"
