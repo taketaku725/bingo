@@ -1,10 +1,10 @@
 const CACHE = "bingo-v1"
 
 const ASSETS = [
-  "/index.html",
-  "/style.css",
-  "/script.js",
-  "/icon.png"
+  "./"
+  "./index.html",
+  "./style.css",
+  "./script.js"
 ]
 
 self.addEventListener("install", e => {
