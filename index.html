@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+<title>BINGO</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- トップ -->
+
+<div id="topScreen">
+
+<h1>BINGO</h1>
+
+<button onclick="showHost()">ホスト</button>
+
+<button onclick="showPlayer()">プレイヤー</button>
+
+</div>
+
+
+
+<!-- ホスト画面 -->
+
+<div id="hostScreen" class="hidden">
+
+<h2>ホスト</h2>
+
+<button onclick="draw()">回す</button>
+
+<div id="result" class="result">-</div>
+
+<h3>ログ</h3>
+
+<div id="log" class="log"></div>
+
+
+<h3>BINGO入力</h3>
+
+<input id="bingoInput" type="number">
+
+<button onclick="addScore()">追加</button>
+
+<div id="scoreList"></div>
+
+<button onclick="backTop()">戻る</button>
+
+</div>
+
+
+
+<!-- プレイヤー -->
+
+<div id="playerScreen" class="hidden">
+
+
+<div id="createScreen">
+
+<button onclick="generateCard()">ランダムカード作成</button>
+
+<div id="card" class="grid"></div>
+
+<button onclick="startPlay()">このカードで開始</button>
+
+<button onclick="backTop()">戻る</button>
+
+</div>
+
+
+
+<div id="playScreen" class="hidden">
+
+<div id="reachCount"></div>
+
+<div id="playCard" class="grid"></div>
+
+<div id="bingoResult"></div>
+
+<button onclick="backTop()">戻る</button>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
