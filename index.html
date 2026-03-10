@@ -13,138 +13,118 @@
 </head>
 
 <body>
-
-<div class="container">
-
-  <!-- トップ -->
-  <div id="topScreen">
-    <h1>BINGO</h1>
-
-    <button onclick="showHost()">ホスト</button>
-    <button onclick="showPlayer()">プレイヤー</button>
-
-    <div class="probabilityBox">
-      <h3>このビンゴは少し変わっています</h3>
-
-      <p>
-        数字はランダムですが、<br>
-        <b>大きい数字ほど出やすくなる仕組み</b>です。
-      </p>
-
-      <ul>
-        <li>20 は 1 の <b>約20倍出やすい</b></li>
-        <li>10 は 2 の <b>約5倍出やすい</b></li>
-      </ul>
-
-      <p class="strategy">
-        <b>
-          大きい数字で攻めるか<br>
-          小さい数字で粘るか
-        </b>
-      </p>
-
-      <p>カード作りにも戦略があります。</p>
+  
+  <div class="container">
+    
+    <!-- トップ -->
+    
+    <div id="topScreen">
+      <h1>BINGO</h1>
+      <button onclick="showHost()">ホスト</button>
+      <button onclick="showPlayer()">プレイヤー</button>
+      
+      <div class="probabilityBox">
+        <h3>このビンゴは少し変わっています</h3>
+        <p>
+          数字はランダムですが、<br/>
+          <b>大きい数字ほど出やすくなる仕組み</b>です。
+        </p>
+        
+        <ul>
+          <li>20 は 1 の <b>約20倍出やすい</b></li>
+          <li>10 は 2 の <b>約5倍出やすい</b></li>
+        </ul>
+        
+        <p class="strategy">
+          <b>
+            大きい数字で攻めるか<br/>
+            小さい数字で粘るか
+          </b>
+        </p>
+        
+        <p>カード作りにも戦略があります。</p>
+      </div>
+      
+      <div class="scoreBox">
+        <h3>スコアの計算</h3>
+        <p>
+          ビンゴした列の数字を全部足します。<br/>
+          その合計の <b>10分の1（切り上げ）</b> が基本点です。
+        </p>
+        
+        <p>
+          後からビンゴした人は、<br>
+          <b>それまでにビンゴした人の点</b>がボーナスになります。
+        </p>
+        
+        <p class="scoreExample">
+          例：37 → 4点
+        </p>
+        
+        <p class="strategy">
+          <b>
+            早くビンゴ → 安全<br/>
+            遅くビンゴ → 高得点
+          </b>
+        </p>
+      </div>
     </div>
-
-    <div class="scoreBox">
-      <h3>スコアの計算</h3>
-
-      <p>
-        ビンゴした列の数字を全部足します。<br>
-        その合計の <b>10分の1（切り上げ）</b> が基本点です。
-      </p>
-
-      <p>
-        後からビンゴした人は、<br>
-        <b>それまでにビンゴした人の点</b>がボーナスになります。
-      </p>
-
-      <p class="scoreExample">
-        例：37 → 4点
-      </p>
-
-      <p class="strategy">
-        <b>
-          早くビンゴ → 安全<br>
-          遅くビンゴ → 高得点
-        </b>
-      </p>
-    </div>
-  </div>
-
-
-  <!-- ホスト -->
-  <div id="hostScreen" class="hidden">
-
-    <h2>ホスト</h2>
-
-    <div id="result" class="result">-</div>
-
-    <button class="spinButton green" onclick="draw()">回す</button>
-
-    <h3>ログ</h3>
-    <div id="log" class="log"></div>
-
-    <h3>BINGO入力</h3>
-
-    <div class="inputRow">
-      <input id="bingoInput" type="number">
-      <button onclick="addScore()">追加</button>
-    </div>
-
-    <div id="scoreList"></div>
-
-    <button class="red" onclick="backTop()">戻る</button>
-
-  </div>
-
-
-  <!-- プレイヤー -->
-  <div id="playerScreen" class="hidden">
-
-    <div id="createScreen">
-
-      <h3>カード作成</h3>
-
-      <div id="cardGrid" class="grid"></div>
-
-      <h3>数字</h3>
-
-      <div id="numberPad" class="pad"></div>
-
-      <button class="blue" onclick="generateCard()">ランダム</button>
-
-      <button
-        id="startButton"
-        class="green"
-        onclick="startPlay()"
-        disabled
-      >
-        このカードで開始
-      </button>
-
+    
+    <!-- ホスト -->
+    
+    <div id="hostScreen" class="hidden">
+      <h2>ホスト</h2>
+      <div id="result" class="result">-</div>
+      <button class="spinButton green" onclick="draw()">回す</button>
+      <h3>ログ</h3>
+      <div id="log" class="log"></div>
+      <h3>BINGO入力</h3>
+      <div class="inputRow">
+        <input id="bingoInput" type="number">
+        <button onclick="addScore()">追加</button>
+      </div>
+      <div id="scoreList"></div>
       <button class="red" onclick="backTop()">戻る</button>
-
     </div>
-
-
-    <div id="playScreen" class="hidden">
-
-      <div id="playCard" class="grid"></div>
-
-      <div id="reachCount"></div>
-
-      <div id="bingoResult"></div>
-
-      <button onclick="backTop()">戻る</button>
-
+    
+    <!-- プレイヤー -->
+    
+    <div id="playerScreen" class="hidden">
+      <div id="createScreen">
+        <h3>カード作成</h3>
+        <div id="cardGrid" class="grid"></div>
+        <h3>数字</h3>
+        <div id="numberPad" class="pad"></div>
+        <button class="blue" onclick="generateCard()">ランダム</button>
+        <button
+          id="startButton"
+          class="green"
+          onclick="startPlay()"
+          disabled
+          >
+          このカードで開始
+        </button>
+        
+        <button class="red" onclick="backTop()">戻る</button>
+      </div>
+      
+      <div id="playScreen" class="hidden">
+        
+        <div id="playCard" class="grid"></div>
+        
+        <div id="reachCount"></div>
+        
+        <div id="bingoResult"></div>
+        
+        <button onclick="backTop()">戻る</button>
+      
+      </div>
     </div>
-
   </div>
 
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
+  <audio id="rollSound" src="Snareroll.mp3"></audio>
+  <audio id="endSound" src="RollEndKicks.mp3"></audio>
 
 </body>
 </html>
