@@ -10,6 +10,11 @@ html,body{
   background:#f5f5f5;
 }
 
+ul {
+  padding-left: 1.2em;
+  list-style-position: inside;
+}
+
 .container{
   max-width:600px;
   margin:auto;
@@ -28,6 +33,25 @@ button{
   border-radius:8px;
   background:#333;
   color:white;
+}
+
+button.green {
+  background:#2ecc71;
+}
+
+button.blue {
+  background:#3498db;
+}
+
+button.red {
+  background:#e74c3c;
+}
+
+.spinButton {
+  display:block;
+  margin:10px auto;
+  padding:16px 30px;
+  font-size:18px;
 }
 
 .grid{
@@ -49,8 +73,9 @@ button{
   font-size:16px;
 }
 
-.pad button.used{
+.pad button.used {
   background:#aaa;
+  pointer-events:none;
 }
 
 .cell{
@@ -94,12 +119,37 @@ button{
   margin:20px 0;
 }
 
-.log{
+.inputRow {
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.inputRow input {
+  flex:1;
+  padding:10px;
+  font-size:16px;
+  border-radius:6px;
+  border:2px solid #ccc;
+}
+
+.log {
   background:white;
   padding:10px;
   border-radius:8px;
   max-height:200px;
   overflow:auto;
+
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:6px;
+}
+
+.log div {
+  text-align:center;
+  background:#eee;
+  padding:6px;
+  border-radius:6px;
 }
 
 #reachCount{
