@@ -74,22 +74,23 @@
 
     <h2>ホスト</h2>
 
-    <button onclick="draw()">回す</button>
-
     <div id="result" class="result">-</div>
+
+    <button class="spinButton red" onclick="draw()">回す</button>
 
     <h3>ログ</h3>
     <div id="log" class="log"></div>
 
     <h3>BINGO入力</h3>
 
-    <input id="bingoInput" type="number">
-
-    <button onclick="addScore()">追加</button>
+    <div class="inputRow">
+      <input id="bingoInput" type="number">
+      <button onclick="addScore()">追加</button>
+    </div>
 
     <div id="scoreList"></div>
 
-    <button onclick="backTop()">戻る</button>
+    <button class="red" onclick="backTop()">戻る</button>
 
   </div>
 
@@ -107,11 +108,18 @@
 
       <div id="numberPad" class="pad"></div>
 
-      <button onclick="generateCard()">ランダム</button>
+      <button class="blue" onclick="generateCard()">ランダム</button>
 
-      <button onclick="startPlay()">このカードで開始</button>
+      <button
+        id="startButton"
+        class="green"
+        onclick="startPlay()"
+        disabled
+      >
+        このカードで開始
+      </button>
 
-      <button onclick="backTop()">戻る</button>
+      <button class="red" onclick="backTop()">戻る</button>
 
     </div>
 
