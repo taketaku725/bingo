@@ -268,18 +268,44 @@ function weightedRandom(){
 
 function draw(){
 
-  if(drawn.length===20)return
+  if(drawn.length===20) return
 
-  const n=weightedRandom()
+  const rollSound = document.getElementById("rollSound")
+  const endSound = document.getElementById("endSound")
 
-  drawn.push(n)
+  rollSound.currentTime = 0
+  rollSound.play()
 
-  result.textContent=n
+  let count = 0
 
-  const div=document.createElement("div")
-  div.textContent=n
+  const interval = setInterval(()=>{
 
-  log.prepend(div)
+    const random = Math.floor(Math.random()*20)+1
+    result.textContent = random
+
+    count++
+
+    if(count > 15){
+
+      clearInterval(interval)
+
+      const n = weightedRandom()
+
+      drawn.push(n)
+
+      rollSound.pause()
+      endSound.currentTime = 0
+      endSound.play()
+
+      result.textContent = n
+
+      const div = document.createElement("div")
+      div.textContent = n
+      log.prepend(div)
+
+    }
+
+  },60)
 
 }
 
