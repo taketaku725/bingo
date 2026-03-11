@@ -324,29 +324,30 @@ function draw(){
 
 function addScore(){
 
-  const n=parseInt(bingoInput.value)
+  const n = parseInt(bingoInput.value)
+  if(!n) return
 
-  if(!n)return
+  const base = Math.ceil(n / 10)
 
-  const base=Math.ceil(n/10)
+  const bonus = bingoScores
+    .map(v => Math.ceil(v.base / 2))
+    .reduce((a,b) => a + b, 0)
 
-  const bonus=bingoScores
-  .map(v=>Math.ceil(v/10))
-  .reduce((a,b)=>a+b,0)
+  const score = base + bonus
 
-  const score=base+bonus
+  bingoScores.push({
+    sum: n,
+    base: base
+  })
 
-  bingoScores.push(n)
+  const rank = bingoScores.length
 
-  const rank=bingoScores.length
-
-  const div=document.createElement("div")
-
-  div.textContent=rank+"着 : "+n+" → "+score
+  const div = document.createElement("div")
+  div.textContent = rank + "着 : " + n + " → " + score
 
   scoreList.appendChild(div)
 
-  bingoInput.value=""
+  bingoInput.value = ""
 
 }
 
