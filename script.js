@@ -345,7 +345,7 @@ function addScore(){
   const rank = bingoScores.length
 
   const div = document.createElement("div")
-  div.textContent = rank + "着 : " + n + " → " + score
+  div.textContent = rank + "着 : " + n + " → " + score + "杯"
 
   scoreList.appendChild(div)
 
