@@ -15,6 +15,8 @@ const lines=[
 [2,4,6]
 ]
 
+const MAX_NUMBER = 30
+
 createCardGrid()
 createPad()
 
@@ -63,7 +65,7 @@ function createCardGrid(){
 
 function createPad(){
 
-  for(let i=1;i<=20;i++){
+  for(let i=1;i<=MAX_NUMBER;i++){
 
     const btn=document.createElement("button")
 
@@ -110,7 +112,7 @@ function generateCard(){
   const nums=[]
 
   while(nums.length<9){
-    const n=Math.floor(Math.random()*20)+1
+    const n=Math.floor(Math.random()*MAX_NUMBER)+1
     if(!nums.includes(n))nums.push(n)
   }
 
@@ -263,7 +265,7 @@ function checkBingo(){
 
 function weightedRandom(){
 
-  const pool=[...Array(20).keys()].map(n=>n+1)
+  const pool=[...Array(MAX_NUMBER).keys()].map(n=>n+1)
   .filter(n=>!drawn.includes(n))
 
   const total=pool.reduce((a,b)=>a+b,0)
@@ -281,7 +283,7 @@ function weightedRandom(){
 
 function draw(){
 
-  if(drawn.length===20) return
+  if(drawn.length===MAX_NUMBER) return
 
   const rollSound = document.getElementById("rollSound")
   const endSound = document.getElementById("endSound")
@@ -293,7 +295,7 @@ function draw(){
 
   const interval = setInterval(()=>{
 
-    const random = Math.floor(Math.random()*20)+1
+    const random = Math.floor(Math.random()*MAX_NUMBER)+1
     result.textContent = random
 
     count++
